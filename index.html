@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #18191a;
+            color: #e4e6eb;
+        }
+
+        /* Header */
+        .header {
+            background-color: #242526;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 8px 16px;
+        }
+
+        .header-content {
+            max-width: 1920px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background-color: #1877f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .search-bar {
+            background-color: #3a3b3c;
+            border-radius: 50px;
+            padding: 10px 16px;
+            border: none;
+            width: 240px;
+            outline: none;
+            color: #e4e6eb;
+        }
+
+        .search-bar::placeholder {
+            color: #b0b3b8;
+        }
+
+        .header-center {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+            justify-content: center;
+            max-width: 600px;
+        }
+
+        .nav-btn {
+            padding: 8px 45px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            position: relative;
+            color: #b0b3b8;
+            font-size: 24px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: #3a3b3c;
+        }
+
+        .nav-btn.active {
+            color: #1877f2;
+            border-bottom: 3px solid #1877f2;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            background-color: #3a3b3c;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            background-color: #4e4f50;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: #e41e3f;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 5px;
+            border-radius: 10px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .profile-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            background-color: #3a3b3c;
+            border: 2px solid transparent;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 280px 1fr 360px;
+            gap: 16px;
+        }
+
+        /* Left Sidebar */
+        .left-sidebar {
+            position: sticky;
+            top: 72px;
+            height: fit-content;
+            padding-right: 8px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #e4e6eb;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background-color: #3a3b3c;
+        }
+
+        .sidebar-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background-color: #3a3b3c;
+        }
+
+        .profile-sidebar-pic {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #4a4b4c;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background-color: #3a3b3c;
+            margin: 8px 0;
+        }
+
+        .shortcuts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            color: #b0b3b8;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .shortcut-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #e4e6eb;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background-color 0.2s;
+        }
+
+        .shortcut-item:hover {
+            background-color: #3a3b3c;
+        }
+
+        .shortcut-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background-color: #4a4b4c;
+        }
+
+        .see-more-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #e4e6eb;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .see-more-btn:hover {
+            background-color: #3a3b3c;
+        }
+
+        /* Feed */
+        .feed {
+            max-width: 680px;
+        }
+
+        /* Stories */
+        .stories {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding: 8px 0;
+        }
+
+        .stories::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .stories::-webkit-scrollbar-track {
+            background: #242526;
+            border-radius: 10px;
+        }
+
+        .stories::-webkit-scrollbar-thumb {
+            background: #4a4b4c;
+            border-radius: 10px;
+        }
+
+        .story {
+            min-width: 112px;
+            height: 200px;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: #242526;
+        }
+
+        .story:hover {
+            transform: scale(1.02);
+            transition: transform 0.2s;
+        }
+
+        .create-story {
+            background: #242526;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 12px;
+        }
+
+        .story-img {
+            width: 100%;
+            height: 140px;
+            background-color: #3a3b3c;
+        }
+
+        .create-icon {
+            width: 40px;
+            height: 40px;
+            background: #1877f2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-top: -20px;
+            border: 4px solid #242526;
+        }
+
+        .story:not(.create-story) {
+            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7)), #3a3b3c;
+        }
+
+        .story-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 4px solid #1877f2;
+            background-color: #4a4b4c;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+
+        .story-name {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Create Post */
+        .create-post {
+            background: #242526;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .create-post-top {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .post-input {
+            flex: 1;
+            background-color: #3a3b3c;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 16px;
+            outline: none;
+            cursor: pointer;
+            color: #b0b3b8;
+        }
+
+        .post-input:hover {
+            background-color: #4e4f50;
+        }
+
+        .create-post-divider {
+            height: 1px;
+            background-color: #3a3b3c;
+            margin: 12px 0;
+        }
+
+        .create-post-actions {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .action-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #b0b3b8;
+            font-weight: 600;
+        }
+
+        .action-btn:hover {
+            background-color: #3a3b3c;
+        }
+
+        /* Post */
+        .post {
+            background: #242526;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .post-header {
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .post-user {
+            display: flex;
+            gap: 8px;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #3a3b3c;
+        }
+
+        .post-info h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 2px;
+            color: #e4e6eb;
+        }
+
+        .post-time {
+            font-size: 13px;
+            color: #b0b3b8;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .post-options {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #b0b3b8;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 50%;
+        }
+
+        .post-options:hover {
+            background-color: #3a3b3c;
+        }
+
+        .post-content {
+            padding: 0 16px 12px;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #e4e6eb;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 500px;
+            background-color: #18191a;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b0b3b8;
+            font-size: 48px;
+        }
+
+        .post-stats {
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            color: #b0b3b8;
+            font-size: 15px;
+        }
+
+        .post-stats span {
+            cursor: pointer;
+        }
+
+        .post-stats span:hover {
+            text-decoration: underline;
+        }
+
+        .post-divider {
+            height: 1px;
+            background-color: #3a3b3c;
+            margin: 0 16px;
+        }
+
+        .post-actions {
+            padding: 4px 16px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .post-action-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #b0b3b8;
+            font-weight: 600;
+        }
+
+        .post-action-btn:hover {
+            background-color: #3a3b3c;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #b0b3b8;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            background-color: #3a3b3c;
+        }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            position: sticky;
+            top: 72px;
+            height: fit-content;
+        }
+
+        .sponsored-section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #b0b3b8;
+            margin-bottom: 12px;
+            padding: 0 8px;
+        }
+
+        .sponsored-ad {
+            background: #242526;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .sponsored-ad:hover {
+            background-color: #3a3b3c;
+        }
+
+        .ad-image {
+            width: 100%;
+            height: 180px;
+            background-color: #3a3b3c;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b0b3b8;
+            font-size: 36px;
+        }
+
+        .ad-content h4 {
+            font-size: 15px;
+            color: #e4e6eb;
+            margin-bottom: 4px;
+        }
+
+        .ad-content p {
+            font-size: 13px;
+            color: #b0b3b8;
+        }
+
+        .contacts-section {
+            margin-bottom: 24px;
+        }
+
+        .contacts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 0 8px;
+        }
+
+        .contacts-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .small-icon-btn {
+            width: 32px;
+            height: 32px;
+            background-color: #3a3b3c;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #b0b3b8;
+        }
+
+        .small-icon-btn:hover {
+            background-color: #4e4f50;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            background-color: #3a3b3c;
+        }
+
+        .contact-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            position: relative;
+            background-color: #3a3b3c;
+        }
+
+        .online-status {
+            width: 12px;
+            height: 12px;
+            background-color: #31a24c;
+            border-radius: 50%;
+            border: 2px solid #242526;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        .contact-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #e4e6eb;
+        }
+
+        @media (max-width: 1200px) {
+            .right-sidebar {
+                display: none;
+            }
+            .main-content {
+                grid-template-columns: 280px 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .left-sidebar {
+                display: none;
+            }
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .search-bar {
+                display: none;
+            }
+            .header-center {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">f</div>
+                <input type="text" class="search-bar" placeholder="Search Facebook">
+            </div>
+            <div class="header-center">
+                <button class="nav-btn active">🏠</button>
+                <button class="nav-btn">👥</button>
+                <button class="nav-btn">📺</button>
+                <button class="nav-btn">🎯</button>
+                <button class="nav-btn">🎮</button>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn">☰</button>
+                <button class="icon-btn">💬</button>
+                <button class="icon-btn">
+                    🔔
+                    <span class="notification-badge">20+</span>
+                </button>
+                <button class="profile-btn">
+                    <div class="profile-pic"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <a href="#" class="sidebar-item">
+                <div class="profile-sidebar-pic"></div>
+                <span>Tejas Narula</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">🤖</div>
+                <span>Meta AI</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">👥</div>
+                <span>Friends</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">🕐</div>
+                <span>Memories</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">🔖</div>
+                <span>Saved</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">👥</div>
+                <span>Groups</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">▶️</div>
+                <span>Video</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">🏪</div>
+                <span>Marketplace</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📰</div>
+                <span>Feeds</span>
+            </a>
+            <button class="see-more-btn">
+                <div class="sidebar-icon">▼</div>
+                <span>See more</span>
+            </button>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="shortcuts-header">
+                <span>Your shortcuts</span>
+            </div>
+            <a href="#" class="shortcut-item">
+                <div class="shortcut-icon"></div>
+                <span>Candy Crush Saga</span>
+            </a>
+            <a href="#" class="shortcut-item">
+                <div class="shortcut-icon"></div>
+                <span>Words With Friends</span>
+            </a>
+        </div>
+
+        <!-- Feed -->
+        <div class="feed">
+            <!-- Stories -->
+            <div class="stories">
+                <div class="story create-story">
+                    <div class="story-img"></div>
+                    <div class="create-icon">+</div>
+                    <span style="font-size: 13px; font-weight: 600; color: #e4e6eb;">Create story</span>
+                </div>
+                <div class="story">
+                    <div class="story-avatar"></div>
+                    <span class="story-name">Gulshan Narula</span>
+                </div>
+                <div class="story">
+                    <div class="story-avatar"></div>
+                    <span class="story-name">Ojaswee Girdhar</span>
+                </div>
+                <div class="story">
+                    <div class="story-avatar"></div>
+                    <span class="story-name">OPS INDIRAPURAM</span>
+                </div>
+                <div class="story">
+                    <div class="story-avatar"></div>
+                    <span class="story-name">Renuka Arora</span>
+                </div>
+            </div>
+
+            <!-- Create Post -->
+            <div class="create-post">
+                <div class="create-post-top">
+                    <div class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%;"></div>
+                    <input type="text" class="post-input" placeholder="What's on your mind, Tejas?">
+                </div>
+                <div class="create-post-divider"></div>
+                <div class="create-post-actions">
+                    <button class="action-btn">
+                        <span style="color: #f3425f; font-size: 24px;">📹</span>
+                        Live video
+                    </button>
+                    <button class="action-btn">
+                        <span style="color: #45bd62; font-size: 24px;">🖼️</span>
+                        Photo/video
+                    </button>
+                    <button class="action-btn">
+                        <span style="color: #f7b928; font-size: 24px;">😊</span>
+                        Feeling/activity
+                    </button>
+                </div>
+            </div>
+
+            <!-- Post -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-user">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h3>Ojaswee Girdhar</h3>
+                            <span class="post-time">2h · 🌍 Brohood · Nadit Chatha · 🔒</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <button class="post-options">⋯</button>
+                        <button class="close-btn">✕</button>
+                    </div>
+                </div>
+                <div class="post-content">
+                    No objections here. 📸
+                </div>
+                <div class="post-image">🖼️</div>
+                <div class="post-stats">
+                    <span>👍❤️😮 342</span>
+                    <span>48 comments · 23 shares</span>
+                </div>
+                <div class="post-divider"></div>
+                <div class="post-actions">
+                    <button class="post-action-btn">
+                        👍 Like
+                    </button>
+                    <button class="post-action-btn">
+                        💬 Comment
+                    </button>
+                    <button class="post-action-btn">
+                        ↗️ Share
+                    </button>
+                </div>
+            </div>
+
+            <!-- Additional Posts -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-user">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h3>Sarah Johnson</h3>
+                            <span class="post-time">5h · 🌍</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <button class="post-options">⋯</button>
+                        <button class="close-btn">✕</button>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Just finished an amazing hike in the mountains! The view was absolutely breathtaking. Nature never fails to inspire me. 🏔️✨
+                </div>
+                <div class="post-image">🖼️</div>
+                <div class="post-stats">
+                    <span>👍❤️ 189</span>
+                    <span>27 comments · 12 shares</span>
+                </div>
+                <div class="post-divider"></div>
+                <div class="post-actions">
+                    <button class="post-action-btn">
+                        👍 Like
+                    </button>
+                    <button class="post-action-btn">
+                        💬 Comment
+                    </button>
+                    <button class="post-action-btn">
+                        ↗️ Share
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="sponsored-section">
+                <div class="section-title">Sponsored</div>
+                <div class="sponsored-ad">
+                    <div class="ad-image">🎬</div>
+                    <div class="ad-content">
+                        <h4>Keevx AI Image to Video Tool</h4>
+                        <p>www.keevx.com</p>
+                    </div>
+                </div>
+                <div class="sponsored-ad">
+                    <div class="ad-image">🎥</div>
+                    <div class="ad-content">
+                        <h4>AI Video & Shorts Maker App ($49 Sale)</h4>
+                        <p>videoexpress.ai</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contacts-section">
+                <div class="contacts-header">
+                    <span class="section-title" style="margin: 0;">Contacts</span>
+                    <div class="contacts-actions">
+                        <button class="small-icon-btn">🔍</button>
+                        <button class="small-icon-btn">⋯</button>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="online-status"></div>
+                    </div>
+                    <span class="contact-name">Ritu Garg</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="online-status"></div>
+                    </div>
+                    <span class="contact-name">Ashish Taneja</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="online-status"></div>
+                    </div>
+                    <span class="contact-name">Aanchal Narula</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="online-status"></div>
+                    </div>
+                    <span class="contact-name">Jessica Williams</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="online-status"></div>
+                    </div>
+                    <span class="contact-name">David Martinez</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="online-status"></div>
+                    </div>
+                    <span class="contact-name">Lisa Anderson</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
