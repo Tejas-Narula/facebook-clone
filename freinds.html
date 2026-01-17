@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends | Facebook</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Friends Page Specific Styles */
+        
+        /* Main Content Layout */
+        .main-content {
+            max-width: 1920px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 0;
+        }
+
+        /* Left Sidebar */
+        .left-sidebar {
+            background-color: #242526;
+            height: calc(100vh - 56px);
+            position: sticky;
+            top: 56px;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .arrow-icon {
+            margin-left: auto;
+            color: #b0b3b8;
+        }
+
+        .sidebar-item.active .sidebar-icon {
+            background-color: #1877f2;
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        /* Friend Request Cards */
+        .request-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .request-card {
+            background-color: #242526;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .request-image {
+            width: 100%;
+            height: 280px;
+            background-color: #3a3b3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #b0b3b8;
+        }
+
+        .request-info {
+            padding: 12px;
+        }
+
+        .request-name {
+            font-size: 17px;
+            font-weight: 600;
+            color: #e4e6eb;
+            margin-bottom: 4px;
+        }
+
+        .mutual-friends {
+            font-size: 13px;
+            color: #b0b3b8;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* People You May Know */
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .people-card {
+            background-color: #242526;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .people-image {
+            width: 100%;
+            height: 200px;
+            background-color: #3a3b3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #b0b3b8;
+        }
+
+        .people-info {
+            padding: 12px;
+        }
+
+        .people-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #e4e6eb;
+            margin-bottom: 4px;
+        }
+
+        .people-mutual {
+            font-size: 13px;
+            color: #b0b3b8;
+            margin-bottom: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .left-sidebar {
+                display: none;
+            }
+        }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">f</div>
+                <input type="text" class="search-bar" placeholder="Search Facebook">
+            </div>
+            <div class="header-center">
+                <a href="./"> <button class="nav-btn active">🏠</button> </a>
+                <a href="./freinds.html"><button class="nav-btn">👥</button></a> 
+                <a href="./reels.html"><button class="nav-btn">📺</button></a>
+                <a href="./groups.html"><button class="nav-btn">🎯</button></a>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn">☰</button>
+                <button class="icon-btn">💬
+                    <span class="notification-badge">1</span>
+                </button>
+                <button class="icon-btn">🔔
+                    <span class="notification-badge">20+</span>
+                </button>
+                <button class="profile-btn">
+                    <div class="profile-pic"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Friends</h1>
+                <button class="settings-btn">⚙️</button>
+            </div>
+
+            <a href="#" class="sidebar-item active">
+                <div class="sidebar-icon">🏠</div>
+                <span>Home</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">👥</div>
+                <span>Friend Requests</span>
+                <span class="arrow-icon">›</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">💡</div>
+                <span>Suggestions</span>
+                <span class="arrow-icon">›</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">👥</div>
+                <span>All friends</span>
+                <span class="arrow-icon">›</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">🎂</div>
+                <span>Birthdays</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon">📋</div>
+                <span>Custom Lists</span>
+                <span class="arrow-icon">›</span>
+            </a>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Friend Requests -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Friend Requests</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="request-grid">
+                    <div class="request-card">
+                        <div class="request-image">🖼️</div>
+                        <div class="request-info">
+                            <div class="request-name">Jennifer Martinez</div>
+                            <div class="mutual-friends">
+                                <span>👥</span>
+                                <span>8 mutual friends</span>
+                            </div>
+                            <button class="confirm-btn">Confirm</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="request-card">
+                        <div class="request-image">🖼️</div>
+                        <div class="request-info">
+                            <div class="request-name">Robert Thompson</div>
+                            <div class="mutual-friends">
+                                <span>👥</span>
+                                <span>3 mutual friends</span>
+                            </div>
+                            <button class="confirm-btn">Confirm</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- People You May Know -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">People you may know</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="people-grid">
+                    <div class="people-card">
+                        <div class="people-image">🖼️</div>
+                        <div class="people-info">
+                            <div class="people-name">Amanda Wilson</div>
+                            <div class="people-mutual">2 mutual friends</div>
+                            <button class="add-friend-btn">Add friend</button>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="people-card">
+                        <div class="people-image">🖼️</div>
+                        <div class="people-info">
+                            <div class="people-name">Michael Brown</div>
+                            <div class="people-mutual">12 mutual friends</div>
+                            <button class="add-friend-btn">Add friend</button>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="people-card">
+                        <div class="people-image">🖼️</div>
+                        <div class="people-info">
+                            <div class="people-name">Sarah Davis</div>
+                            <div class="people-mutual">5 mutual friends</div>
+                            <button class="add-friend-btn">Add friend</button>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="people-card">
+                        <div class="people-image">🖼️</div>
+                        <div class="people-info">
+                            <div class="people-name">David Garcia</div>
+                            <div class="people-mutual">1 mutual friend</div>
+                            <button class="add-friend-btn">Add friend</button>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="people-card">
+                        <div class="people-image">🖼️</div>
+                        <div class="people-info">
+                            <div class="people-name">Emily Rodriguez</div>
+                            <div class="people-mutual">7 mutual friends</div>
+                            <button class="add-friend-btn">Add friend</button>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="people-card">
+                        <div class="people-image">🖼️</div>
+                        <div class="people-info">
+                            <div class="people-name">James Anderson</div>
+                            <div class="people-mutual">15 mutual friends</div>
+                            <button class="add-friend-btn">Add friend</button>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="people-card">
+                        <div class="people-image">🖼️</div>
+                        <div class="people-info">
+                            <div class="people-name">Lisa Martinez</div>
+                            <div class="people-mutual">Followed by 3.2K</div>
+                            <button class="add-friend-btn">Add friend</button>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="people-card">
+                        <div class="people-image">🖼️</div>
+                        <div class="people-info">
+                            <div class="people-name">Christopher Lee</div>
+                            <div class="people-mutual">9 mutual friends</div>
+                            <button class="add-friend-btn">Add friend</button>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

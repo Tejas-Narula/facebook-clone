@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groups | Facebook</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Groups Page Specific Styles */
+        
+        /* Main Content Layout */
+        .main-content {
+            max-width: 1920px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 0;
+        }
+
+        /* Left Sidebar */
+        .left-sidebar {
+            background-color: #242526;
+            height: calc(100vh - 56px);
+            position: sticky;
+            top: 56px;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .search-groups {
+            background-color: #3a3b3c;
+            border-radius: 50px;
+            padding: 10px 16px;
+            border: none;
+            width: 100%;
+            outline: none;
+            color: #e4e6eb;
+            margin-bottom: 16px;
+        }
+
+        .search-groups::placeholder {
+            color: #b0b3b8;
+        }
+
+        .sidebar-item.active .sidebar-icon {
+            background-color: #1877f2;
+        }
+
+        .discover-icon {
+            background-color: #3a3b3c;
+        }
+
+        .your-groups-icon {
+            background-color: #3a3b3c;
+        }
+
+        .create-group-btn {
+            width: 100%;
+            background-color: #3a3b3c;
+            color: #1877f2;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .create-group-btn:hover {
+            background-color: #4e4f50;
+        }
+
+        .groups-joined-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 0 8px;
+        }
+
+        .group-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 4px;
+        }
+
+        .group-item:hover {
+            background-color: #3a3b3c;
+        }
+
+        .group-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background-color: #3a3b3c;
+        }
+
+        .group-info {
+            flex: 1;
+        }
+
+        .group-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #e4e6eb;
+            margin-bottom: 2px;
+        }
+
+        .group-activity {
+            font-size: 13px;
+            color: #b0b3b8;
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        /* Post Caption */
+        .post-caption {
+            padding: 12px 16px;
+            background-color: #18191a;
+        }
+
+        .caption-user {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .caption-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #3a3b3c;
+        }
+
+        .caption-info {
+            flex: 1;
+        }
+
+        .caption-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #e4e6eb;
+            margin-bottom: 4px;
+        }
+
+        .caption-time {
+            font-size: 13px;
+            color: #b0b3b8;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .caption-text {
+            padding: 8px 0;
+            font-size: 15px;
+            color: #e4e6eb;
+            line-height: 1.5;
+        }
+
+        .hashtags {
+            color: #1877f2;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .left-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo">f</div>
+                <div class="search-icon">🔍</div>
+            </div>
+            <div class="header-center">
+                <a href="./"> <button class="nav-btn active">🏠</button> </a>
+                <a href="./freinds.html"><button class="nav-btn">👥</button></a> 
+                <a href="./reels.html"><button class="nav-btn">📺</button></a>
+                <a href="./groups.html"><button class="nav-btn">🎯</button></a>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn">☰</button>
+                <button class="icon-btn">💬
+                    <span class="notification-badge">1</span>
+                </button>
+                <button class="icon-btn">🔔
+                    <span class="notification-badge">20+</span>
+                </button>
+                <button class="profile-btn">
+                    <div class="profile-pic"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Groups</h1>
+                <button class="settings-btn">⚙️</button>
+            </div>
+
+            <input type="text" class="search-groups" placeholder="Search groups">
+
+            <a href="#" class="sidebar-item active">
+                <div class="sidebar-icon">📰</div>
+                <span>Your feed</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon discover-icon">🔍</div>
+                <span>Discover</span>
+            </a>
+            <a href="#" class="sidebar-item">
+                <div class="sidebar-icon your-groups-icon">👥</div>
+                <span>Your groups</span>
+            </a>
+
+            <button class="create-group-btn">
+                <span>+</span>
+                Create new group
+            </button>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="groups-joined-header">
+                <span class="section-label">Groups you've joined</span>
+                <a href="#" class="see-all">See all</a>
+            </div>
+
+            <div class="group-item">
+                <div class="group-avatar"></div>
+                <div class="group-info">
+                    <div class="group-name">Tech Enthusiasts <span class="verified-badge">✓</span></div>
+                    <div class="group-activity">Last active a few seconds ago</div>
+                </div>
+            </div>
+
+            <div class="group-item">
+                <div class="group-avatar"></div>
+                <div class="group-info">
+                    <div class="group-name">Photography Masters</div>
+                    <div class="group-activity">Last active 2 days ago</div>
+                </div>
+            </div>
+
+            <div class="group-item">
+                <div class="group-avatar"></div>
+                <div class="group-info">
+                    <div class="group-name">Travel & Adventure</div>
+                    <div class="group-activity">Last active 5 days ago</div>
+                </div>
+            </div>
+
+            <div class="group-item">
+                <div class="group-avatar"></div>
+                <div class="group-info">
+                    <div class="group-name">Cooking Community</div>
+                    <div class="group-activity">Last active 1 week ago</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <div class="content-header">Recent activity</div>
+
+            <!-- Post 1 -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-user">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h3>Tech Enthusiasts <span class="verified-badge">✓</span></h3>
+                            <span class="post-time">Dr Sarah Johnson · 1m · 🌍</span>
+                        </div>
+                    </div>
+                    <button class="post-options">⋯</button>
+                </div>
+                <div class="post-image">🖼️</div>
+                <div class="post-caption">
+                    <div class="caption-user">
+                        <div class="caption-avatar"></div>
+                        <div class="caption-info">
+                            <div class="caption-name">Dr Sarah Johnson</div>
+                            <div class="caption-time">January 16 at 7:16 PM · 🌍</div>
+                        </div>
+                    </div>
+                    <div class="caption-text">
+                        Understanding technology trends in 2025 👍💡✨ <span class="hashtags">#technology #innovation #future #AI #tech #trending #education #learn #post</span>
+                    </div>
+                </div>
+                <div class="post-stats">
+                    <span>👍❤️ 342</span>
+                    <span>48 comments · 23 shares</span>
+                </div>
+                <div class="post-divider"></div>
+                <div class="post-actions">
+                    <button class="post-action-btn">👍 Like</button>
+                    <button class="post-action-btn">💬 Comment</button>
+                    <button class="post-action-btn">↗️ Share</button>
+                </div>
+            </div>
+
+            <!-- Post 2 -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-user">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h3>Photography Masters</h3>
+                            <span class="post-time">Michael Chen · 3h · 🌍</span>
+                        </div>
+                    </div>
+                    <button class="post-options">⋯</button>
+                </div>
+                <div class="post-content">
+                    Just captured this stunning sunrise at the beach! Golden hour never disappoints. What's your favorite time to shoot? 📸🌅
+                </div>
+                <div class="post-image">🖼️</div>
+                <div class="post-stats">
+                    <span>👍❤️😍 521</span>
+                    <span>87 comments · 45 shares</span>
+                </div>
+                <div class="post-divider"></div>
+                <div class="post-actions">
+                    <button class="post-action-btn">👍 Like</button>
+                    <button class="post-action-btn">💬 Comment</button>
+                    <button class="post-action-btn">↗️ Share</button>
+                </div>
+            </div>
+
+            <!-- Post 3 -->
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-user">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h3>Travel & Adventure</h3>
+                            <span class="post-time">Emily Rodriguez · 5h · 🌍</span>
+                        </div>
+                    </div>
+                    <button class="post-options">⋯</button>
+                </div>
+                <div class="post-content">
+                    Explored the mountains of Nepal this weekend! The views were absolutely breathtaking. Already planning my next adventure. Where should I go next? 🏔️✈️
+                </div>
+                <div class="post-image">🖼️</div>
+                <div class="post-stats">
+                    <span>👍❤️ 289</span>
+                    <span>56 comments · 19 shares</span>
+                </div>
+                <div class="post-divider"></div>
+                <div class="post-actions">
+                    <button class="post-action-btn">👍 Like</button>
+                    <button class="post-action-btn">💬 Comment</button>
+                    <button class="post-action-btn">↗️ Share</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

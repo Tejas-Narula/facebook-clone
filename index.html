@@ -4,158 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #18191a;
-            color: #e4e6eb;
-        }
-
-        /* Header */
-        .header {
-            background-color: #242526;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 8px 16px;
-        }
-
-        .header-content {
-            max-width: 1920px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-        }
-
-        .logo {
-            width: 40px;
-            height: 40px;
-            background-color: #1877f2;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-        }
-
-        .search-bar {
-            background-color: #3a3b3c;
-            border-radius: 50px;
-            padding: 10px 16px;
-            border: none;
-            width: 240px;
-            outline: none;
-            color: #e4e6eb;
-        }
-
-        .search-bar::placeholder {
-            color: #b0b3b8;
-        }
-
-        .header-center {
-            display: flex;
-            gap: 8px;
-            flex: 1;
-            justify-content: center;
-            max-width: 600px;
-        }
-
-        .nav-btn {
-            padding: 8px 45px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            position: relative;
-            color: #b0b3b8;
-            font-size: 24px;
-            transition: background-color 0.2s;
-        }
-
-        .nav-btn:hover {
-            background-color: #3a3b3c;
-        }
-
-        .nav-btn.active {
-            color: #1877f2;
-            border-bottom: 3px solid #1877f2;
-        }
-
-        .header-right {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex: 1;
-            justify-content: flex-end;
-        }
-
-        .icon-btn {
-            width: 40px;
-            height: 40px;
-            background-color: #3a3b3c;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            position: relative;
-        }
-
-        .icon-btn:hover {
-            background-color: #4e4f50;
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            background-color: #e41e3f;
-            color: white;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 2px 5px;
-            border-radius: 10px;
-            min-width: 20px;
-            text-align: center;
-        }
-
-        .profile-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .profile-pic {
-            width: 100%;
-            height: 100%;
-            background-color: #3a3b3c;
-            border: 2px solid transparent;
-        }
-
-        /* Main Content */
+        /* Homepage Specific Styles */
+        
+        /* Main Content Layout */
         .main-content {
             max-width: 1920px;
             margin: 0 auto;
@@ -171,48 +24,6 @@
             top: 72px;
             height: fit-content;
             padding-right: 8px;
-        }
-
-        .sidebar-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-            color: #e4e6eb;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: background-color 0.2s;
-        }
-
-        .sidebar-item:hover {
-            background-color: #3a3b3c;
-        }
-
-        .sidebar-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            background-color: #3a3b3c;
-        }
-
-        .profile-sidebar-pic {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #4a4b4c;
-        }
-
-        .sidebar-divider {
-            height: 1px;
-            background-color: #3a3b3c;
-            margin: 8px 0;
         }
 
         .shortcuts-header {
@@ -426,143 +237,6 @@
             background-color: #3a3b3c;
         }
 
-        /* Post */
-        .post {
-            background: #242526;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .post-header {
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .post-user {
-            display: flex;
-            gap: 8px;
-        }
-
-        .post-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #3a3b3c;
-        }
-
-        .post-info h3 {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 2px;
-            color: #e4e6eb;
-        }
-
-        .post-time {
-            font-size: 13px;
-            color: #b0b3b8;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .post-options {
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: #b0b3b8;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 50%;
-        }
-
-        .post-options:hover {
-            background-color: #3a3b3c;
-        }
-
-        .post-content {
-            padding: 0 16px 12px;
-            font-size: 15px;
-            line-height: 1.5;
-            color: #e4e6eb;
-        }
-
-        .post-image {
-            width: 100%;
-            height: 500px;
-            background-color: #18191a;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #b0b3b8;
-            font-size: 48px;
-        }
-
-        .post-stats {
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            color: #b0b3b8;
-            font-size: 15px;
-        }
-
-        .post-stats span {
-            cursor: pointer;
-        }
-
-        .post-stats span:hover {
-            text-decoration: underline;
-        }
-
-        .post-divider {
-            height: 1px;
-            background-color: #3a3b3c;
-            margin: 0 16px;
-        }
-
-        .post-actions {
-            padding: 4px 16px;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .post-action-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 8px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            border-radius: 8px;
-            font-size: 15px;
-            color: #b0b3b8;
-            font-weight: 600;
-        }
-
-        .post-action-btn:hover {
-            background-color: #3a3b3c;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: #b0b3b8;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 50%;
-        }
-
-        .close-btn:hover {
-            background-color: #3a3b3c;
-        }
-
         /* Right Sidebar */
         .right-sidebar {
             position: sticky;
@@ -572,14 +246,6 @@
 
         .sponsored-section {
             margin-bottom: 24px;
-        }
-
-        .section-title {
-            font-size: 17px;
-            font-weight: 600;
-            color: #b0b3b8;
-            margin-bottom: 12px;
-            padding: 0 8px;
         }
 
         .sponsored-ad {
@@ -635,24 +301,6 @@
             gap: 8px;
         }
 
-        .small-icon-btn {
-            width: 32px;
-            height: 32px;
-            background-color: #3a3b3c;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            color: #b0b3b8;
-        }
-
-        .small-icon-btn:hover {
-            background-color: #4e4f50;
-        }
-
         .contact-item {
             display: flex;
             align-items: center;
@@ -666,31 +314,13 @@
             background-color: #3a3b3c;
         }
 
-        .contact-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            position: relative;
-            background-color: #3a3b3c;
-        }
-
-        .online-status {
-            width: 12px;
-            height: 12px;
-            background-color: #31a24c;
-            border-radius: 50%;
-            border: 2px solid #242526;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
-
         .contact-name {
             font-size: 15px;
             font-weight: 500;
             color: #e4e6eb;
         }
 
+        /* Responsive */
         @media (max-width: 1200px) {
             .right-sidebar {
                 display: none;
@@ -708,37 +338,31 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        @media (max-width: 600px) {
-            .search-bar {
-                display: none;
-            }
-            .header-center {
-                display: none;
-            }
-        }
     </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
 </head>
 <body>
     <!-- Header -->
     <div class="header">
         <div class="header-content">
             <div class="header-left">
-                <div class="logo">f</div>
+                <div class="logo"><i class="fa-brands fa-facebook" style="color: #1877f2;"></i></div>
                 <input type="text" class="search-bar" placeholder="Search Facebook">
             </div>
             <div class="header-center">
-                <button class="nav-btn active">🏠</button>
-                <button class="nav-btn">👥</button>
-                <button class="nav-btn">📺</button>
-                <button class="nav-btn">🎯</button>
-                <button class="nav-btn">🎮</button>
+                <a href="./"> <button class="nav-btn active"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="x19dipnz x1lliihq x1k90msu x2h7rmj x1qfuztq" style="color: var(--secondary-icon);">0<path d="M8.99 23H7.93c-1.354 0-2.471 0-3.355-.119-.928-.125-1.747-.396-2.403-1.053-.656-.656-.928-1.475-1.053-2.403C1 18.541 1 17.425 1 16.07v-4.3c0-1.738-.002-2.947.528-4.006.53-1.06 1.497-1.784 2.888-2.826L6.65 3.263c1.114-.835 2.02-1.515 2.815-1.977C10.294.803 11.092.5 12 .5c.908 0 1.707.303 2.537.786.795.462 1.7 1.142 2.815 1.977l2.232 1.675c1.391 1.042 2.359 1.766 2.888 2.826.53 1.059.53 2.268.528 4.006v4.3c0 1.355 0 2.471-.119 3.355-.124.928-.396 1.747-1.052 2.403-.657.657-1.476.928-2.404 1.053-.884.119-2 .119-3.354.119H8.99zM7.8 4.9l-2 1.5C4.15 7.638 3.61 8.074 3.317 8.658 3.025 9.242 3 9.937 3 12v4c0 1.442.002 2.424.101 3.159.095.706.262 1.033.485 1.255.223.223.55.39 1.256.485.734.099 1.716.1 3.158.1V14.5a2.5 2.5 0 0 1 2.5-2.5h3a2.5 2.5 0 0 1 2.5 2.5V21c1.443 0 2.424-.002 3.159-.101.706-.095 1.033-.262 1.255-.485.223-.222.39-.55.485-1.256.099-.734.101-1.716.101-3.158v-4c0-2.063-.025-2.758-.317-3.342-.291-.584-.832-1.02-2.483-2.258l-2-1.5c-1.174-.881-1.987-1.489-2.67-1.886C12.87 2.63 12.425 2.5 12 2.5c-.425 0-.87.13-1.53.514-.682.397-1.495 1.005-2.67 1.886zM14 21v-6.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V21h4z"></path></svg></button> </a>
+                <a href="./freinds.html"><button class="nav-btn">👥</button></a> 
+                <a href="./reels.html"><button class="nav-btn">📺</button></a>
+                <a href="./groups.html"><button class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="x19dipnz x1lliihq x1k90msu x2h7rmj x1qfuztq" style="color: var(--secondary-icon);"><path d="M12 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-2 4a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path><path d="M.5 12C.5 5.649 5.649.5 12 .5S23.5 5.649 23.5 12 18.351 23.5 12 23.5.5 18.351.5 12zm2.21-2a9.537 9.537 0 0 0 0 3.993l.3.007A2 2 0 0 0 3 10h-.29zm.663-1.983a4 4 0 0 1 0 7.966 9.523 9.523 0 0 0 1.948 2.773A5.002 5.002 0 0 1 10 15.523h4a5.002 5.002 0 0 1 4.679 3.233 9.523 9.523 0 0 0 1.948-2.773 4 4 0 0 1 0-7.966A9.501 9.501 0 0 0 12 2.5a9.501 9.501 0 0 0-8.627 5.517zM21.5 12a9.55 9.55 0 0 0-.212-2.007l-.265.007H21a2 2 0 0 0-.01 4l.3-.007c.138-.643.21-1.31.21-1.993zM12 21.5a9.455 9.455 0 0 0 4.97-1.402A3 3 0 0 0 14 17.523h-4a3 3 0 0 0-2.97 2.575A9.456 9.456 0 0 0 12 21.5z"></path></svg></button></a>
             </div>
             <div class="header-right">
                 <button class="icon-btn">☰</button>
                 <button class="icon-btn">💬</button>
-                <button class="icon-btn">
-                    🔔
+                <button class="icon-btn">🔔
                     <span class="notification-badge">20+</span>
                 </button>
                 <button class="profile-btn">
@@ -754,7 +378,7 @@
         <div class="left-sidebar">
             <a href="#" class="sidebar-item">
                 <div class="profile-sidebar-pic"></div>
-                <span>Tejas Narula</span>
+                <span>John Doe</span>
             </a>
             <a href="#" class="sidebar-item">
                 <div class="sidebar-icon">🤖</div>
@@ -819,19 +443,19 @@
                 </div>
                 <div class="story">
                     <div class="story-avatar"></div>
-                    <span class="story-name">Gulshan Narula</span>
+                    <span class="story-name">Sarah Johnson</span>
                 </div>
                 <div class="story">
                     <div class="story-avatar"></div>
-                    <span class="story-name">Ojaswee Girdhar</span>
+                    <span class="story-name">Mike Chen</span>
                 </div>
                 <div class="story">
                     <div class="story-avatar"></div>
-                    <span class="story-name">OPS INDIRAPURAM</span>
+                    <span class="story-name">Emily Davis</span>
                 </div>
                 <div class="story">
                     <div class="story-avatar"></div>
-                    <span class="story-name">Renuka Arora</span>
+                    <span class="story-name">Alex Turner</span>
                 </div>
             </div>
 
@@ -839,7 +463,7 @@
             <div class="create-post">
                 <div class="create-post-top">
                     <div class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%;"></div>
-                    <input type="text" class="post-input" placeholder="What's on your mind, Tejas?">
+                    <input type="text" class="post-input" placeholder="What's on your mind, John?">
                 </div>
                 <div class="create-post-divider"></div>
                 <div class="create-post-actions">
@@ -858,14 +482,14 @@
                 </div>
             </div>
 
-            <!-- Post -->
+            <!-- Posts -->
             <div class="post">
                 <div class="post-header">
                     <div class="post-user">
                         <div class="post-avatar"></div>
                         <div class="post-info">
-                            <h3>Ojaswee Girdhar</h3>
-                            <span class="post-time">2h · 🌍 Brohood · Nadit Chatha · 🔒</span>
+                            <h3>Sarah Johnson</h3>
+                            <span class="post-time">2h · 🌍</span>
                         </div>
                     </div>
                     <div style="display: flex; gap: 4px;">
@@ -874,7 +498,7 @@
                     </div>
                 </div>
                 <div class="post-content">
-                    No objections here. 📸
+                    Just finished an amazing hike in the mountains! The view was absolutely breathtaking. 🏔️✨
                 </div>
                 <div class="post-image">🖼️</div>
                 <div class="post-stats">
@@ -883,25 +507,18 @@
                 </div>
                 <div class="post-divider"></div>
                 <div class="post-actions">
-                    <button class="post-action-btn">
-                        👍 Like
-                    </button>
-                    <button class="post-action-btn">
-                        💬 Comment
-                    </button>
-                    <button class="post-action-btn">
-                        ↗️ Share
-                    </button>
+                    <button class="post-action-btn">👍 Like</button>
+                    <button class="post-action-btn">💬 Comment</button>
+                    <button class="post-action-btn">↗️ Share</button>
                 </div>
             </div>
 
-            <!-- Additional Posts -->
             <div class="post">
                 <div class="post-header">
                     <div class="post-user">
                         <div class="post-avatar"></div>
                         <div class="post-info">
-                            <h3>Sarah Johnson</h3>
+                            <h3>Mike Chen</h3>
                             <span class="post-time">5h · 🌍</span>
                         </div>
                     </div>
@@ -911,24 +528,47 @@
                     </div>
                 </div>
                 <div class="post-content">
-                    Just finished an amazing hike in the mountains! The view was absolutely breathtaking. Nature never fails to inspire me. 🏔️✨
+                    Excited to share my new photography portfolio! Check it out and let me know what you think. 📸💻
                 </div>
-                <div class="post-image">🖼️</div>
                 <div class="post-stats">
                     <span>👍❤️ 189</span>
                     <span>27 comments · 12 shares</span>
                 </div>
                 <div class="post-divider"></div>
                 <div class="post-actions">
-                    <button class="post-action-btn">
-                        👍 Like
-                    </button>
-                    <button class="post-action-btn">
-                        💬 Comment
-                    </button>
-                    <button class="post-action-btn">
-                        ↗️ Share
-                    </button>
+                    <button class="post-action-btn">👍 Like</button>
+                    <button class="post-action-btn">💬 Comment</button>
+                    <button class="post-action-btn">↗️ Share</button>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-header">
+                    <div class="post-user">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h3>Emily Davis</h3>
+                            <span class="post-time">Yesterday · 🌍</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <button class="post-options">⋯</button>
+                        <button class="close-btn">✕</button>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Throwback to this incredible sunset from last week's beach trip. 🌅❤️
+                </div>
+                <div class="post-image">🖼️</div>
+                <div class="post-stats">
+                    <span>👍❤️😍 521</span>
+                    <span>64 comments · 38 shares</span>
+                </div>
+                <div class="post-divider"></div>
+                <div class="post-actions">
+                    <button class="post-action-btn">👍 Like</button>
+                    <button class="post-action-btn">💬 Comment</button>
+                    <button class="post-action-btn">↗️ Share</button>
                 </div>
             </div>
         </div>
@@ -965,24 +605,6 @@
                     <div class="contact-avatar">
                         <div class="online-status"></div>
                     </div>
-                    <span class="contact-name">Ritu Garg</span>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-avatar">
-                        <div class="online-status"></div>
-                    </div>
-                    <span class="contact-name">Ashish Taneja</span>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-avatar">
-                        <div class="online-status"></div>
-                    </div>
-                    <span class="contact-name">Aanchal Narula</span>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-avatar">
-                        <div class="online-status"></div>
-                    </div>
                     <span class="contact-name">Jessica Williams</span>
                 </div>
                 <div class="contact-item">
@@ -996,6 +618,24 @@
                         <div class="online-status"></div>
                     </div>
                     <span class="contact-name">Lisa Anderson</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="online-status"></div>
+                    </div>
+                    <span class="contact-name">James Wilson</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="online-status"></div>
+                    </div>
+                    <span class="contact-name">Emma Thompson</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-avatar">
+                        <div class="online-status"></div>
+                    </div>
+                    <span class="contact-name">Robert Taylor</span>
                 </div>
             </div>
         </div>

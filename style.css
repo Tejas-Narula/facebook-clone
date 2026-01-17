@@ -1,0 +1,547 @@
+/* Facebook Clone - Common Styles */
+/* Use this stylesheet across all pages */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #18191a;
+    color: #e4e6eb;
+}
+
+/* ========== HEADER STYLES ========== */
+.header {
+    background-color: #242526;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 8px 16px;
+}
+
+.header-content {
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+/* .logo {
+    width: 40px;
+    height: 40px;
+    background-color: #1877f2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    cursor: pointer;
+} */
+
+.search-bar {
+    background-color: #3a3b3c;
+    border-radius: 50px;
+    padding: 10px 16px;
+    border: none;
+    width: 240px;
+    outline: none;
+    color: #e4e6eb;
+}
+
+.search-bar::placeholder {
+    color: #b0b3b8;
+}
+
+.search-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #3a3b3c;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #b0b3b8;
+    cursor: pointer;
+}
+
+.search-icon:hover {
+    background-color: #4e4f50;
+}
+
+.header-center {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+    max-width: 600px;
+}
+
+.nav-btn {
+    padding: 8px 45px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    position: relative;
+    color: #b0b3b8;
+    font-size: 24px;
+    transition: background-color 0.2s;
+}
+
+.nav-btn:hover {
+    background-color: #3a3b3c;
+}
+
+.nav-btn.active {
+    color: #1877f2;
+    border-bottom: 3px solid #1877f2;
+}
+
+.header-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #3a3b3c;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    position: relative;
+    color: #e4e6eb;
+}
+
+.icon-btn:hover {
+    background-color: #4e4f50;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: #e41e3f;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.profile-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    background-color: #3a3b3c;
+    border: 2px solid transparent;
+}
+
+/* ========== COMMON BUTTON STYLES ========== */
+.settings-btn,
+.small-icon-btn {
+    width: 36px;
+    height: 36px;
+    background-color: #3a3b3c;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #b0b3b8;
+}
+
+.settings-btn:hover,
+.small-icon-btn:hover {
+    background-color: #4e4f50;
+}
+
+.small-icon-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+}
+
+/* ========== COMMON TEXT STYLES ========== */
+.section-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #b0b3b8;
+    margin-bottom: 12px;
+    padding: 0 8px;
+}
+
+.section-label {
+    font-size: 17px;
+    font-weight: 600;
+    color: #b0b3b8;
+}
+
+.sidebar-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e4e6eb;
+}
+
+.content-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e4e6eb;
+    margin-bottom: 16px;
+}
+
+/* ========== COMMON LINK STYLES ========== */
+.see-all {
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.see-all:hover {
+    text-decoration: underline;
+}
+
+/* ========== SIDEBAR COMMON STYLES ========== */
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #e4e6eb;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    margin-bottom: 4px;
+}
+
+.sidebar-item:hover {
+    background-color: #3a3b3c;
+}
+
+.sidebar-item.active {
+    background-color: #3a3b3c;
+}
+
+.sidebar-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background-color: #3a3b3c;
+}
+
+.sidebar-divider {
+    height: 1px;
+    background-color: #3a3b3c;
+    margin: 8px 0;
+}
+
+/* ========== AVATAR STYLES ========== */
+.profile-sidebar-pic,
+.post-avatar,
+.contact-avatar {
+    background-color: #3a3b3c;
+}
+
+.profile-sidebar-pic {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.contact-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.online-status {
+    width: 12px;
+    height: 12px;
+    background-color: #31a24c;
+    border-radius: 50%;
+    border: 2px solid #242526;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+/* ========== POST COMMON STYLES ========== */
+.post {
+    background: #242526;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.post-header {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.post-user {
+    display: flex;
+    gap: 8px;
+}
+
+.post-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: #e4e6eb;
+}
+
+.post-time {
+    font-size: 13px;
+    color: #b0b3b8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.post-options {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #b0b3b8;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 50%;
+}
+
+.post-options:hover {
+    background-color: #3a3b3c;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #b0b3b8;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 50%;
+}
+
+.close-btn:hover {
+    background-color: #3a3b3c;
+}
+
+.post-content {
+    padding: 0 16px 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #e4e6eb;
+}
+
+.post-image {
+    width: 100%;
+    background-color: #18191a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b0b3b8;
+    font-size: 48px;
+    min-height: 400px;
+}
+
+.post-stats {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    color: #b0b3b8;
+    font-size: 15px;
+}
+
+.post-stats span {
+    cursor: pointer;
+}
+
+.post-stats span:hover {
+    text-decoration: underline;
+}
+
+.post-divider {
+    height: 1px;
+    background-color: #3a3b3c;
+    margin: 0 16px;
+}
+
+.post-actions {
+    padding: 4px 16px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.post-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #b0b3b8;
+    font-weight: 600;
+}
+
+.post-action-btn:hover {
+    background-color: #3a3b3c;
+}
+
+/* ========== BADGE STYLES ========== */
+.verified-badge {
+    color: #1877f2;
+    font-size: 14px;
+}
+
+/* ========== BUTTON STYLES ========== */
+.confirm-btn,
+.add-friend-btn {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.confirm-btn {
+    background-color: #1877f2;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.confirm-btn:hover {
+    background-color: #166fe5;
+}
+
+.delete-btn,
+.remove-btn {
+    width: 100%;
+    background-color: #3a3b3c;
+    color: #e4e6eb;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-btn:hover,
+.remove-btn:hover {
+    background-color: #4e4f50;
+}
+
+.add-friend-btn {
+    background-color: #3a3b3c;
+    color: #1877f2;
+    padding: 8px;
+}
+
+.add-friend-btn:hover {
+    background-color: #4e4f50;
+}
+
+/* ========== SCROLLBAR STYLES ========== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #242526;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4a4b4c;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5a5b5c;
+}
+
+/* ========== RESPONSIVE STYLES ========== */
+@media (max-width: 1200px) {
+    .right-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .left-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .search-bar {
+        display: none;
+    }
+    .header-center {
+        display: none;
+    }
+    .nav-btn {
+        padding: 8px 20px;
+    }
+}
