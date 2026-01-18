@@ -207,6 +207,14 @@
             background-color: #4e4f50;
         }
 
+        .contact-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
         .contact-avatar {
             width: 36px;
             height: 36px;
@@ -285,6 +293,14 @@
             line-height: 1.5;
             font-size: 15px;
         }
+
+        .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
 
         .post-image {
             width: 100%;
@@ -470,6 +486,26 @@
         }
 
         .story {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.story-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.story-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+        .story {
             min-width: 112px;
             height: 200px;
             border-radius: 12px;
@@ -513,9 +549,23 @@
             border: 4px solid #242526;
         }
 
-        .story:not(.create-story) {
-            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7)), #3a3b3c;
-        }
+        .story::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0),
+        rgba(0,0,0,0.7)
+    );
+    z-index: 1;
+}
+
+.story * {
+    position: relative;
+    z-index: 2;
+}
+
 
         .story-avatar {
             width: 40px;
@@ -642,6 +692,14 @@
             background-color: #3a3b3c;
         }
 
+        .ad-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
         .ad-image {
             width: 100%;
             height: 180px;
@@ -745,7 +803,7 @@
                     <span class="notification-badge">20+</span>
                 </button>
                 <button class="profile-btn">
-                    <div class="profile-pic"></div>
+                    <div class="profile-pic"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"></div>
                 </button>
             </div>
         </div>
@@ -822,11 +880,13 @@
                 <span>Your shortcuts</span>
             </div>
             <a href="#" class="shortcut-item">
-                <div class="shortcut-icon"></div>
+                <div class="shortcut-icon"><img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?w=100&h=100&fit=crop" alt="Candy Crush"></div>
                 <span>Candy Crush Saga</span>
+                
             </a>
             <a href="#" class="shortcut-item">
-                <div class="shortcut-icon"></div>
+                <div class="shortcut-icon">        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=100&h=100&fit=crop" alt="Words With Friends">
+</div>
                 <span>Words With Friends</span>
             </a>
         </div>
@@ -835,8 +895,8 @@
         <div class="feed">
             <div class="create-post">
                 <div class="create-post-top">
-                    <div class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%;"></div>
-                    <input type="text" class="post-input" placeholder="What's on your mind, John?">
+                    <div class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; border-radius: 50%;"><img style="border-radius: 50%;" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"></div>
+                    <input  type="text" class="post-input" placeholder="What's on your mind, John?">
                     
                     <div class="create-post-actions">
                     <button class="action-btn">
@@ -860,29 +920,45 @@
 
 
             <!-- Stories -->
-            <div class="stories">
-                <div class="story create-story">
-                    <div class="story-img"></div>
-                    <div class="create-icon">+</div>
-                    <span style="font-size: 13px; font-weight: 600; color: #e4e6eb;">Create story</span>
-                </div>
-                <div class="story">
-                    <div class="story-avatar"></div>
-                    <span class="story-name">Sarah Johnson</span>
-                </div>
-                <div class="story">
-                    <div class="story-avatar"></div>
-                    <span class="story-name">Mike Chen</span>
-                </div>
-                <div class="story">
-                    <div class="story-avatar"></div>
-                    <span class="story-name">Emily Davis</span>
-                </div>
-                <div class="story">
-                    <div class="story-avatar"></div>
-                    <span class="story-name">Alex Turner</span>
-                </div>
-            </div>
+            <!-- Stories -->
+<div class="stories">
+
+  <!-- Create Story -->
+  <div class="story create-story">
+    <div class="story-img">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=500&fit=crop">
+    </div>
+    <div class="create-icon">+</div>
+    <span>Create story</span>
+  </div>
+
+  <!-- Story 1 -->
+  <div class="story" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=300&h=500&fit=crop')">
+    <div class="story-avatar">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop">
+    </div>
+    <span class="story-name">Sarah Johnson</span>
+  </div>
+
+  <!-- Story 2 -->
+  <div class="story" style="background-image:url('https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=300&h=500&fit=crop')">
+    <div class="story-avatar">
+      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop">
+    </div>
+    <span class="story-name">Mike Chen</span>
+  </div>
+
+  <!-- Story 3 -->
+  <div class="story" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=300&h=500&fit=crop')">
+    <div class="story-avatar">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop">
+    </div>
+    <span class="story-name">Emily Davis</span>
+  </div>
+
+</div>
+
+
 
             <!-- Create Post -->
             
@@ -890,7 +966,7 @@
         <div class="post">
                 <div class="post-header">
                     <div class="post-user">
-                        <div class="post-avatar"></div>
+                        <div class="post-avatar" ><img style="border-radius: 50%;" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=100&fit=crop"></div>
                         <div class="post-info">
                             <h3>Sarah Johnson</h3>
                             <span class="post-time">2h · 🌍</span>
@@ -904,14 +980,19 @@
                 <div class="post-content">
                     Just finished an amazing hike in the mountains! The view was absolutely breathtaking. 🏔️✨
                 </div>
-                <div class="post-image">🖼️</div>
+                <div class="post-image">
+  <img 
+    src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=400&fit=crop"
+    alt="Post image">
+</div>
+
                 <div class="post-stats">
                     <span>👍 ❤️ 342</span>
                     <span>48 comments · 23 shares</span>
                 </div>
                 <div class="post-divider"></div>
                 <div class="post-actions">
-                    <button class="post-action-btn"><i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v4/yX/r/MgrC8BpSeFs.png&quot;); background-position: 0px -833px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i> Like</button>
+                    <button class="post-action-btn"><i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v4/yX/r/MgrC8BpSeFs.png&quot;); background-position: 0px -833px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block; color: white;"></i> Like</button>
                     <button class="post-action-btn">💬 Comment</button>
                     <button class="post-action-btn">↗️ Share</button>
                 </div>
@@ -920,7 +1001,7 @@
             <div class="post">
                 <div class="post-header">
                     <div class="post-user">
-                        <div class="post-avatar"></div>
+                        <div class="post-avatar"><img style="border-radius: 50%;" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&h=100&fit=crop"></div>
                         <div class="post-info">
                             <h3>Mike Chen</h3>
                             <span class="post-time">5h · 🌍</span>
@@ -949,7 +1030,7 @@
             <div class="post">
                 <div class="post-header">
                     <div class="post-user">
-                        <div class="post-avatar"></div>
+                        <div class="post-avatar"><img style="border-radius: 50%;" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=100&h=100&fit=crop"></div>
                         <div class="post-info">
                             <h3>Emily Davis</h3>
                             <span class="post-time">Yesterday · 🌍</span>
@@ -963,7 +1044,10 @@
                 <div class="post-content">
                     Throwback to this incredible sunset from last week's beach trip. 🌅❤️
                 </div>
-                <div class="post-image">🖼️</div>
+                <div class="post-image">
+  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=400&fit=crop">
+</div>
+
                 <div class="post-stats">
                     <span>👍 ❤️ 521</span>
                     <span>64 comments · 38 shares</span>
@@ -983,14 +1067,22 @@
             <div class="sponsored-section">
                 <div class="section-title">Sponsored</div>
                 <div class="sponsored-ad">
-                    <div class="ad-image">🎬</div>
+                    <div class="ad-image">
+  <img 
+    src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=180&fit=crop"
+    alt="Ad image">
+</div>
+
                     <div class="ad-content">
                         <h4>Keevx AI Image to Video Tool</h4>
                         <p>www.keevx.com</p>
                     </div>
                 </div>
                 <div class="sponsored-ad">
-                    <div class="ad-image">🎥</div>
+                    <div class="ad-image">
+  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=180&fit=crop">
+</div>
+
                     <div class="ad-content">
                         <h4>AI Video & Shorts Maker App ($49 Sale)</h4>
                         <p>videoexpress.ai</p>
@@ -1008,37 +1100,49 @@
                 </div>
                 <div class="contact-item">
                     <div class="contact-avatar">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop">
                         <div class="online-status"></div>
                     </div>
                     <span class="contact-name">Jessica Williams</span>
                 </div>
                 <div class="contact-item">
                     <div class="contact-avatar">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop">
+
                         <div class="online-status"></div>
                     </div>
                     <span class="contact-name">David Martinez</span>
                 </div>
                 <div class="contact-item">
                     <div class="contact-avatar">
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100&h=100&fit=crop">
+
                         <div class="online-status"></div>
                     </div>
                     <span class="contact-name">Lisa Anderson</span>
                 </div>
                 <div class="contact-item">
                     <div class="contact-avatar">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop">
+
                         <div class="online-status"></div>
                     </div>
                     <span class="contact-name">James Wilson</span>
                 </div>
                 <div class="contact-item">
                     <div class="contact-avatar">
-                        <div class="online-status"></div>
+                        <div class="online-status">
+                            
+</div>
+<img src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=100&h=100&fit=crop">
                     </div>
                     <span class="contact-name">Emma Thompson</span>
                 </div>
                 <div class="contact-item">
                     <div class="contact-avatar">
                         <div class="online-status"></div>
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop">
+
                     </div>
                     <span class="contact-name">Robert Taylor</span>
                 </div>
