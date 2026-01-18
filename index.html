@@ -4,10 +4,352 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        /* Homepage Specific Styles */
-        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #18191a;
+            color: #e4e6eb;
+        }
+
+        /* Header */
+        .header {
+            background-color: #242526;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background-color: #1877f2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .search-bar {
+            background-color: #3a3b3c;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 16px;
+            outline: none;
+            color: #e4e6eb;
+            width: 240px;
+        }
+
+        .search-bar::placeholder {
+            color: #b0b3b8;
+        }
+
+        .header-center {
+            display: flex;
+            gap: 4px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .header-center a {
+            text-decoration: none;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 8px 40px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 24px;
+            color: #b0b3b8;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+
+        .nav-btn:hover {
+            background-color: #3a3b3c;
+        }
+
+        .nav-btn.active {
+            color: #1877f2;
+            border-bottom: 3px solid #1877f2;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #3a3b3c;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            background-color: #4e4f50;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background-color: #e41e3f;
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .profile-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4a4b4c;
+        }
+
+        /* Sidebar Common Styles */
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #e4e6eb;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background-color: #3a3b3c;
+        }
+
+        .profile-sidebar-pic {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #4a4b4c;
+        }
+
+        .sidebar-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #3a3b3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background-color: #3a3b3c;
+            margin: 8px 0;
+        }
+
+        .section-title {
+            color: #b0b3b8;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .small-icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #3a3b3c;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .small-icon-btn:hover {
+            background-color: #4e4f50;
+        }
+
+        .contact-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #4a4b4c;
+            position: relative;
+        }
+
+        .online-status {
+            width: 12px;
+            height: 12px;
+            background-color: #31a24c;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 2px solid #242526;
+        }
+
+        /* Posts */
+        .post {
+            background: #242526;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .post-user {
+            display: flex;
+            gap: 8px;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4a4b4c;
+        }
+
+        .post-info h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .post-time {
+            font-size: 13px;
+            color: #b0b3b8;
+        }
+
+        .post-options, .close-btn {
+            background: none;
+            border: none;
+            color: #b0b3b8;
+            font-size: 20px;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+        }
+
+        .post-options:hover, .close-btn:hover {
+            background-color: #3a3b3c;
+        }
+
+        .post-content {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 400px;
+            background-color: #3a3b3c;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #b0b3b8;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .post-divider {
+            height: 1px;
+            background-color: #3a3b3c;
+            margin: 8px 0;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .post-action-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #b0b3b8;
+        }
+
+        .post-action-btn:hover {
+            background-color: #3a3b3c;
+        }
+
         /* Main Content Layout */
         .main-content {
             max-width: 1920px;
@@ -22,8 +364,28 @@
         .left-sidebar {
             position: sticky;
             top: 72px;
-            height: fit-content;
+            max-height: calc(100vh - 72px);
+            overflow-y: auto;
+            overflow-x: hidden;
             padding-right: 8px;
+            padding-bottom: 20px;
+        }
+
+        .left-sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .left-sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .left-sidebar::-webkit-scrollbar-thumb {
+            background: #4a4b4c;
+            border-radius: 10px;
+        }
+
+        .left-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #5a5b5c;
         }
 
         .shortcuts-header {
@@ -58,6 +420,16 @@
             height: 36px;
             border-radius: 8px;
             background-color: #4a4b4c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .shortcut-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
         }
 
         .see-more-btn {
@@ -241,11 +613,32 @@
         .right-sidebar {
             position: sticky;
             top: 72px;
-            height: fit-content;
+            max-height: calc(100vh - 72px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 20px;
+        }
+
+        .right-sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .right-sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .right-sidebar::-webkit-scrollbar-thumb {
+            background: #4a4b4c;
+            border-radius: 10px;
+        }
+
+        .right-sidebar::-webkit-scrollbar-thumb:hover {
+            background: #5a5b5c;
         }
 
         .sponsored-section {
             margin-bottom: 24px;
+            padding: 0 8px;
         }
 
         .sponsored-ad {
@@ -286,6 +679,7 @@
 
         .contacts-section {
             margin-bottom: 24px;
+            padding: 0 8px;
         }
 
         .contacts-header {
@@ -339,25 +733,21 @@
             }
         }
     </style>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
     <!-- Header -->
     <div class="header">
         <div class="header-content">
             <div class="header-left">
-                <div class="logo"><i class="fa-brands fa-facebook" style="color: #1877f2;"></i></div>
+                <div class="logo">f</div>
                 <input type="text" class="search-bar" placeholder="Search Facebook">
             </div>
             <div class="header-center">
-                <a href="./"> <button class="nav-btn active"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="x19dipnz x1lliihq x1k90msu x2h7rmj x1qfuztq" style="color: var(--secondary-icon);">0<path d="M8.99 23H7.93c-1.354 0-2.471 0-3.355-.119-.928-.125-1.747-.396-2.403-1.053-.656-.656-.928-1.475-1.053-2.403C1 18.541 1 17.425 1 16.07v-4.3c0-1.738-.002-2.947.528-4.006.53-1.06 1.497-1.784 2.888-2.826L6.65 3.263c1.114-.835 2.02-1.515 2.815-1.977C10.294.803 11.092.5 12 .5c.908 0 1.707.303 2.537.786.795.462 1.7 1.142 2.815 1.977l2.232 1.675c1.391 1.042 2.359 1.766 2.888 2.826.53 1.059.53 2.268.528 4.006v4.3c0 1.355 0 2.471-.119 3.355-.124.928-.396 1.747-1.052 2.403-.657.657-1.476.928-2.404 1.053-.884.119-2 .119-3.354.119H8.99zM7.8 4.9l-2 1.5C4.15 7.638 3.61 8.074 3.317 8.658 3.025 9.242 3 9.937 3 12v4c0 1.442.002 2.424.101 3.159.095.706.262 1.033.485 1.255.223.223.55.39 1.256.485.734.099 1.716.1 3.158.1V14.5a2.5 2.5 0 0 1 2.5-2.5h3a2.5 2.5 0 0 1 2.5 2.5V21c1.443 0 2.424-.002 3.159-.101.706-.095 1.033-.262 1.255-.485.223-.222.39-.55.485-1.256.099-.734.101-1.716.101-3.158v-4c0-2.063-.025-2.758-.317-3.342-.291-.584-.832-1.02-2.483-2.258l-2-1.5c-1.174-.881-1.987-1.489-2.67-1.886C12.87 2.63 12.425 2.5 12 2.5c-.425 0-.87.13-1.53.514-.682.397-1.495 1.005-2.67 1.886zM14 21v-6.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V21h4z"></path></svg></button> </a>
-                <a href="./freinds.html"><button class="nav-btn">👥</button></a> 
-                <a href="./reels.html"><button class="nav-btn">📺</button></a>
-                <a href="./groups.html"><button class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="x19dipnz x1lliihq x1k90msu x2h7rmj x1qfuztq" style="color: var(--secondary-icon);"><path d="M12 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-2 4a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path><path d="M.5 12C.5 5.649 5.649.5 12 .5S23.5 5.649 23.5 12 18.351 23.5 12 23.5.5 18.351.5 12zm2.21-2a9.537 9.537 0 0 0 0 3.993l.3.007A2 2 0 0 0 3 10h-.29zm.663-1.983a4 4 0 0 1 0 7.966 9.523 9.523 0 0 0 1.948 2.773A5.002 5.002 0 0 1 10 15.523h4a5.002 5.002 0 0 1 4.679 3.233 9.523 9.523 0 0 0 1.948-2.773 4 4 0 0 1 0-7.966A9.501 9.501 0 0 0 12 2.5a9.501 9.501 0 0 0-8.627 5.517zM21.5 12a9.55 9.55 0 0 0-.212-2.007l-.265.007H21a2 2 0 0 0-.01 4l.3-.007c.138-.643.21-1.31.21-1.993zM12 21.5a9.455 9.455 0 0 0 4.97-1.402A3 3 0 0 0 14 17.523h-4a3 3 0 0 0-2.97 2.575A9.456 9.456 0 0 0 12 21.5z"></path></svg></button></a>
+                <a href="./"> <button class="nav-btn active"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M9.464 1.286C10.294.803 11.092.5 12 .5c.908 0 1.707.303 2.537.786.795.462 1.7 1.142 2.815 1.977l2.232 1.675c1.391 1.042 2.359 1.766 2.888 2.826.53 1.059.53 2.268.528 4.006v4.3c0 1.355 0 2.471-.119 3.355-.124.928-.396 1.747-1.052 2.403-.657.657-1.476.928-2.404 1.053-.884.119-2 .119-3.354.119H7.93c-1.354 0-2.471 0-3.355-.119-.928-.125-1.747-.396-2.403-1.053-.656-.656-.928-1.475-1.053-2.403C1 18.541 1 17.425 1 16.07v-4.3c0-1.738-.002-2.947.528-4.006.53-1.06 1.497-1.784 2.888-2.826L6.65 3.263c1.114-.835 2.02-1.515 2.815-1.977zM10.5 13A1.5 1.5 0 0 0 9 14.5V21h6v-6.5a1.5 1.5 0 0 0-1.5-1.5h-3z"></path></svg></button> </a>
+                <a href="./friends.html"><button class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12.496 5a4 4 0 1 1 8 0 4 4 0 0 1-8 0zm4-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-9 2.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-2 4a2 2 0 1 1 4 0 2 2 0 0 1-4 0zM5.5 15a5 5 0 0 0-5 5 3 3 0 0 0 3 3h8.006a3 3 0 0 0 3-3 5 5 0 0 0-5-5H5.5zm-3 5a3 3 0 0 1 3-3h4.006a3 3 0 0 1 3 3 1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1zm12-9.5a5.04 5.04 0 0 0-.37.014 1 1 0 0 0 .146 1.994c.074-.005.149-.008.224-.008h4.006a3 3 0 0 1 3 3 1 1 0 0 1-1 1h-3.398a1 1 0 1 0 0 2h3.398a3 3 0 0 0 3-3 5 5 0 0 0-5-5H14.5z"></path></svg></button></a> 
+                <a href="./reels.html"><button class="nav-btn">📷</button></a>
+                <a href="./groups.html"><button class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-2 4a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path><path d="M.5 12C.5 5.649 5.649.5 12 .5S23.5 5.649 23.5 12 18.351 23.5 12 23.5.5 18.351.5 12zm2.21-2a9.537 9.537 0 0 0 0 3.993l.3.007A2 2 0 0 0 3 10h-.29zm.663-1.983a4 4 0 0 1 0 7.966 9.523 9.523 0 0 0 1.948 2.773A5.002 5.002 0 0 1 10 15.523h4a5.002 5.002 0 0 1 4.679 3.233 9.523 9.523 0 0 0 1.948-2.773 4 4 0 0 1 0-7.966A9.501 9.501 0 0 0 12 2.5a9.501 9.501 0 0 0-8.627 5.517zM21.5 12a9.55 9.55 0 0 0-.212-2.007l-.265.007H21a2 2 0 0 0-.01 4l.3-.007c.138-.643.21-1.31.21-1.993zM12 21.5a9.455 9.455 0 0 0 4.97-1.402A3 3 0 0 0 14 17.523h-4a3 3 0 0 0-2.97 2.575A9.456 9.456 0 0 0 12 21.5z"></path></svg></button></a>
             </div>
             <div class="header-right">
                 <button class="icon-btn">☰</button>
@@ -423,11 +813,11 @@
                 <span>Your shortcuts</span>
             </div>
             <a href="#" class="shortcut-item">
-                <div class="shortcut-icon"></div>
+                <div class="shortcut-icon">🎮</div>
                 <span>Candy Crush Saga</span>
             </a>
             <a href="#" class="shortcut-item">
-                <div class="shortcut-icon"></div>
+                <div class="shortcut-icon">🎯</div>
                 <span>Words With Friends</span>
             </a>
         </div>
