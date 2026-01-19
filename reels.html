@@ -160,29 +160,77 @@
         }
 
         /* Main Content */
+        /* Update these specific classes in your <style> section */
+
         .reels-container {
             height: 100vh;
             width: 100vw;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            flex-direction: column;
+            align-items: center; /* Centers the 9:16 card horizontally */
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
             padding-top: 56px;
+            background-color: #000;
         }
 
-        /* Reel Card */
         .reel-card {
-            width: 100%;
-            max-width: 500px;
-            height: calc(100vh - 56px);
-            background-color: #18191a;
+            /* This forces the card into the Facebook 9:16 shape */
+            width: auto; 
+            height: calc(100vh - 70px); /* Fits height to screen minus header/spacing */
+            aspect-ratio: 9 / 16;       /* Exact 9:16 Ratio */
+            
+            flex-shrink: 0;             /* Prevents overlapping/squishing */
+            scroll-snap-align: start;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0;
+            background-color: #000;
+            margin-bottom: 20px;        /* Small gap between reels like FB */
+            border-radius: 8px;
+            overflow: hidden;           /* Clips video to the rounded corners */
         }
 
+        .main-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* FB Style: Fills the 9:16 area perfectly */
+            display: block;
+        }
+        .reel-card:hover .video-overlay { opacity: 1; } /* Show on hover */
+
+        .video-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0,0,0,0.2);
+        opacity: 0; /* Hidden by default */
+        transition: opacity 0.3s;
+        pointer-events: none;
+        }
+        .play-btn-icon {
+        font-size: 60px;
+        color: white;
+        filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+        }
+        .video-seeker {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px; /* Slightly thicker for easier clicking */
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            z-index: 10; /* Ensure it is above other layers */
+        }
+
+        .video-progress {
+            height: 100%;
+            background: #1877f2;
+            width: 0%;
+            pointer-events: none; /* Let the click pass through to the seeker container */
+        }
         .reel-video {
             width: 100%;
             height: 100%;
@@ -249,20 +297,38 @@
         }
 
         /* Bottom Info */
+        /* Styling for the caption */
+        .reel-caption {
+            font-size: 14px;
+            color: #ffffff;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Limits caption to 2 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Ensure the bottom info has a dark gradient for readability */
         .reel-info {
             position: absolute;
             bottom: 0;
             left: 0;
-            right: 70px;
-            padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            right: 0;
+            padding: 20px 70px 25px 16px; /* Right padding leaves space for action buttons */
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+            pointer-events: none; /* Allows clicks to pass through to the seeker bar */
         }
 
-        .creator-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
+        /* Make creator-info and follow button interactive */
+        .creator-info, .follow-btn {
+            pointer-events: auto;
+        }
+
+        /* Ensure action icons are above the gradient */
+        .reel-actions {
+            z-index: 5;
         }
 
         .creator-avatar {
@@ -327,37 +393,35 @@
         }
 
         /* Navigation Arrows */
+        /* Navigation Arrows - Facebook Style Positioning */
         .nav-arrow {
             position: fixed;
-            right: 24px;
-            width: 48px;
-            height: 48px;
+            right: 30px; /* Distance from right edge */
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background-color: #242526; /* Dark FB background */
+            border: 1px solid #3e4042;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: white;
+            font-size: 20px;
+            color: #b0b3b8;
             cursor: pointer;
-            transition: all 0.2s;
-            z-index: 50;
+            transition: background-color 0.2s;
+            z-index: 200; /* Ensure they stay above the reels */
         }
 
         .nav-arrow:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
+            background-color: #3a3b3c;
         }
 
         .nav-arrow.up {
-            top: 50%;
-            transform: translateY(-80px);
+            top: 45%; /* Positioned above the middle */
         }
 
         .nav-arrow.down {
-            top: 50%;
-            transform: translateY(30px);
+            top: 55%; /* Positioned below the middle */
         }
 
         @media (max-width: 600px) {
@@ -382,81 +446,275 @@
                 <input type="text" class="search-bar" placeholder="Search Facebook">
             </div>
             <div class="header-center">
-                <a href="./"> <button class="nav-btn">🏠</button> </a>
-                <a href="./freinds.html"><button class="nav-btn">👥</button></a> 
-                <a href="./reels.html"><button class="nav-btn" active>📺</button></a>
-                <a href="./groups.html"><button class="nav-btn">🎯</button></a>
+                <a href="./"> <button class="nav-btn active"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M9.464 1.286C10.294.803 11.092.5 12 .5c.908 0 1.707.303 2.537.786.795.462 1.7 1.142 2.815 1.977l2.232 1.675c1.391 1.042 2.359 1.766 2.888 2.826.53 1.059.53 2.268.528 4.006v4.3c0 1.355 0 2.471-.119 3.355-.124.928-.396 1.747-1.052 2.403-.657.657-1.476.928-2.404 1.053-.884.119-2 .119-3.354.119H7.93c-1.354 0-2.471 0-3.355-.119-.928-.125-1.747-.396-2.403-1.053-.656-.656-.928-1.475-1.053-2.403C1 18.541 1 17.425 1 16.07v-4.3c0-1.738-.002-2.947.528-4.006.53-1.06 1.497-1.784 2.888-2.826L6.65 3.263c1.114-.835 2.02-1.515 2.815-1.977zM10.5 13A1.5 1.5 0 0 0 9 14.5V21h6v-6.5a1.5 1.5 0 0 0-1.5-1.5h-3z"></path></svg></button> </a>
+                <a href="./freinds.html"><button class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12.496 5a4 4 0 1 1 8 0 4 4 0 0 1-8 0zm4-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-9 2.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-2 4a2 2 0 1 1 4 0 2 2 0 0 1-4 0zM5.5 15a5 5 0 0 0-5 5 3 3 0 0 0 3 3h8.006a3 3 0 0 0 3-3 5 5 0 0 0-5-5H5.5zm-3 5a3 3 0 0 1 3-3h4.006a3 3 0 0 1 3 3 1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1zm12-9.5a5.04 5.04 0 0 0-.37.014 1 1 0 0 0 .146 1.994c.074-.005.149-.008.224-.008h4.006a3 3 0 0 1 3 3 1 1 0 0 1-1 1h-3.398a1 1 0 1 0 0 2h3.398a3 3 0 0 0 3-3 5 5 0 0 0-5-5H14.5z"></path></svg></button></a> 
+                <a href="./reels.html"><button class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color: var(--secondary-icon);"><path d="M10.996 12.132A1 1 0 0 0 9.5 13v4a1 1 0 0 0 1.496.868l3.5-2a1 1 0 0 0 0-1.736l-3.5-2z"></path><path d="M12.075 1h-.15C9.632 1 7.81 1 6.38 1.192c-1.472.198-2.674.616-3.623 1.565-.949.95-1.367 2.15-1.565 3.623C1 7.81 1 9.632 1 11.925v.15c0 2.293 0 4.116.192 5.545.198 1.472.616 2.674 1.565 3.623.95.949 2.15 1.367 3.623 1.565C7.81 23 9.632 23 11.925 23h.15c2.293 0 4.116 0 5.545-.192 1.472-.198 2.674-.616 3.623-1.565.949-.95 1.367-2.15 1.565-3.623.192-1.43.192-3.252.192-5.545v-.15c0-2.293 0-4.116-.192-5.545-.198-1.472-.616-2.674-1.565-3.623-.95-.949-2.15-1.367-3.623-1.565C16.19 1 14.368 1 12.075 1zM4.172 4.172c.515-.516 1.224-.83 2.475-.998l.183-.023L8.113 7H3.132c.013-.121.027-.239.042-.353.168-1.25.482-1.96.998-2.475zM10.22 7 8.895 3.023C9.778 3 10.801 3 12 3c.642 0 1.234 0 1.78.004L15.114 7H10.22zm6.253 2h4.507c.02.86.02 1.848.02 3 0 2.385-.002 4.074-.174 5.353-.168 1.25-.482 1.96-.998 2.475-.515.516-1.224.83-2.475.998-1.28.172-2.968.174-5.353.174s-4.074-.002-5.353-.174c-1.25-.168-1.96-.482-2.475-.998-.516-.515-.83-1.224-.998-2.475C3.002 16.073 3 14.385 3 12c0-1.152 0-2.14.02-3h13.454zm.747-2-1.316-3.949c.537.026 1.016.065 1.448.123 1.25.168 1.96.482 2.475.998.516.515.83 1.224.998 2.475.015.114.03.232.042.353H17.22z"></path></svg></button></a>
+                <a href="./groups.html"><button class="nav-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-2 4a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"></path><path d="M.5 12C.5 5.649 5.649.5 12 .5S23.5 5.649 23.5 12 18.351 23.5 12 23.5.5 18.351.5 12zm2.21-2a9.537 9.537 0 0 0 0 3.993l.3.007A2 2 0 0 0 3 10h-.29zm.663-1.983a4 4 0 0 1 0 7.966 9.523 9.523 0 0 0 1.948 2.773A5.002 5.002 0 0 1 10 15.523h4a5.002 5.002 0 0 1 4.679 3.233 9.523 9.523 0 0 0 1.948-2.773 4 4 0 0 1 0-7.966A9.501 9.501 0 0 0 12 2.5a9.501 9.501 0 0 0-8.627 5.517zM21.5 12a9.55 9.55 0 0 0-.212-2.007l-.265.007H21a2 2 0 0 0-.01 4l.3-.007c.138-.643.21-1.31.21-1.993zM12 21.5a9.455 9.455 0 0 0 4.97-1.402A3 3 0 0 0 14 17.523h-4a3 3 0 0 0-2.97 2.575A9.456 9.456 0 0 0 12 21.5z"></path></svg></button></a>
             </div>
             <div class="header-right">
-                <button class="icon-btn">☰</button>
-                <button class="icon-btn">💬</button>
-                <button class="icon-btn">🔔
-                    <span class="notification-badge">2</span>
+                <button class="icon-btn" style="color: white;"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color:var(--primary-icon)"><path d="M18.5 1A1.5 1.5 0 0 0 17 2.5v3A1.5 1.5 0 0 0 18.5 7h3A1.5 1.5 0 0 0 23 5.5v-3A1.5 1.5 0 0 0 21.5 1h-3zm0 8a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 21.5 9h-3zm-16 8A1.5 1.5 0 0 0 1 18.5v3A1.5 1.5 0 0 0 2.5 23h3A1.5 1.5 0 0 0 7 21.5v-3A1.5 1.5 0 0 0 5.5 17h-3zm8 0A1.5 1.5 0 0 0 9 18.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm8 0a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm-16-8A1.5 1.5 0 0 0 1 10.5v3A1.5 1.5 0 0 0 2.5 15h3A1.5 1.5 0 0 0 7 13.5v-3A1.5 1.5 0 0 0 5.5 9h-3zm0-8A1.5 1.5 0 0 0 1 2.5v3A1.5 1.5 0 0 0 2.5 7h3A1.5 1.5 0 0 0 7 5.5v-3A1.5 1.5 0 0 0 5.5 1h-3zm8 0A1.5 1.5 0 0 0 9 2.5v3A1.5 1.5 0 0 0 10.5 7h3A1.5 1.5 0 0 0 15 5.5v-3A1.5 1.5 0 0 0 13.5 1h-3zm0 8A1.5 1.5 0 0 0 9 10.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 13.5 9h-3z"></path></svg></button>
+                <button class="icon-btn" style="color: white;"><svg viewBox="0 0 12 12" width="20" height="20" fill="currentColor" aria-hidden="true" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color:var(--primary-icon)"><g stroke="none" stroke-width="1" fill-rule="evenodd"><path d="m106.868 921.248-1.892 2.925a.32.32 0 0 1-.443.094l-1.753-1.134a.2.2 0 0 0-.222.003l-1.976 1.363c-.288.199-.64-.143-.45-.437l1.892-2.925a.32.32 0 0 1 .443-.095l1.753 1.134a.2.2 0 0 0 .222-.003l1.976-1.363c.288-.198.64.144.45.438m-3.368-4.251c-3.323 0-5.83 2.432-5.83 5.658 0 1.642.652 3.128 1.834 4.186a.331.331 0 0 1 .111.234l.03 1.01a.583.583 0 0 0 .82.519l1.13-.5a.32.32 0 0 1 .22-.015c.541.148 1.108.223 1.685.223 3.323 0 5.83-2.432 5.83-5.657 0-3.226-2.507-5.658-5.83-5.658" transform="translate(-450 -1073.5) translate(352.5 156.845)"></path></g></svg></button>
+                <button class="icon-btn" style="color: white;"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true" class="x14rh7hd x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" style="--x-color:var(--primary-icon)"><path d="M3 9.5a9 9 0 1 1 18 0v2.927c0 1.69.475 3.345 1.37 4.778a1.5 1.5 0 0 1-1.272 2.295h-4.625a4.5 4.5 0 0 1-8.946 0H2.902a1.5 1.5 0 0 1-1.272-2.295A9.01 9.01 0 0 0 3 12.43V9.5zm6.55 10a2.5 2.5 0 0 0 4.9 0h-4.9z"></path></svg>
+                    <span class="notification-badge">20+</span>
                 </button>
                 <button class="profile-btn">
-                    <div class="profile-pic"></div>
+                    <div class="profile-pic"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"></div>
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Reels Container -->
-    <div class="reels-container">
-        <!-- Reel Card -->
-        <div class="reel-card">
-            <!-- Profile Avatar Top Left -->
-            <div class="reel-profile"></div>
+    <div class="reels-container" id="reels-track">
 
-            <!-- Video Placeholder -->
-            <div class="reel-video">🎬</div>
-
-            <!-- Right Side Actions -->
-            <div class="reel-actions">
-                <div class="action-item">
-                    <div class="action-icon">👍</div>
-                    <span class="action-count">12.8M</span>
-                </div>
-                <div class="action-item">
-                    <div class="action-icon">💬</div>
-                    <span class="action-count">65.3K</span>
-                </div>
-                <div class="action-item">
-                    <div class="action-icon">↗️</div>
-                    <span class="action-count">187K</span>
-                </div>
-                <div class="action-item">
-                    <div class="action-icon">⋯</div>
-                </div>
-            </div>
-
-            <!-- Bottom Info -->
-            <div class="reel-info">
-                <div class="creator-info">
-                    <div class="creator-avatar"></div>
-                    <div>
-                        <div class="creator-name">
-                            Rio films <span class="verified-badge">✓</span>
-                            <button class="follow-btn">· Follow</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="audio-info">
-                    <span class="music-icon">🎵</span>
-                    <span>A.R. Rahman · Luka Chuppi</span>
-                </div>
-                <div class="engagement-bar">
-                    <span class="heart-icon">❤️</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navigation Arrows -->
+        <!-- Arrows up down -->
         <div class="nav-arrow up">
             <span>↑</span>
         </div>
         <div class="nav-arrow down">
             <span>↓</span>
         </div>
+
+        <!-- Reel Sample 1 -->
+    <div class="reel-card">
+
+        <div class="reel-actions">
+    <div class="action-item">
+        <div class="action-icon">
+            <img src="./images/thumb-up.png" height="25px" width="25px" alt="">
+        </div> <span class="action-count">12.8M</span>
     </div>
+    <div class="action-item">
+        <div class="action-icon">
+            <img src="./images/comment.png" height="25px" width="25px" alt="">
+        </div> <span class="action-count">65.3K</span>
+    </div>
+    <div class="action-item">
+        <div class="action-icon">
+            <img src="./images/share.png" height="25px" width="25px" alt="">
+        </div> <span class="action-count">187K</span>
+    </div>
+    <div class="action-item">
+        <div class="action-icon">⋯</div>
+    </div>
+</div>
+
+<div class="reel-info">
+    <div class="creator-info">
+        <div class="creator-avatar">
+            <img src="./logo.png" alt="" style="width:100%; height:100%; border-radius:50%;">
+        </div>
+        <div class="creator-name">
+            Rio films <span class="verified-badge">✓</span>
+            <button class="follow-btn">· Follow</button>
+        </div>
+    </div>
+    
+    <div class="reel-caption">
+        This is a sample caption for the reel #nature #trending #facebookreels
+    </div>
+
+    <div class="audio-info">
+        <span class="music-icon">🎵</span>
+        <span>A.R. Rahman · Luka Chuppi</span>
+    </div>
+</div>
+
+    <video class="main-video" loop muted playsinline src="./reels/reel1.mp4"></video>
+    
+    <div class="video-overlay">
+        <div class="play-btn-icon">▶</div>
+    </div>
+
+    <div class="video-seeker">
+        <div class="video-progress"></div>
+    </div>
+    </div>
+
+    <!-- Reel Sample 2 -->
+    <div class="reel-card">
+
+        <div class="reel-actions">
+    <div class="action-item">
+        <div class="action-icon">
+            <img src="./images/thumb-up.png" height="25px" width="25px" alt="">
+        </div> <span class="action-count">12.8M</span>
+    </div>
+    <div class="action-item">
+        <div class="action-icon">
+            <img src="./images/comment.png" height="25px" width="25px" alt="">
+        </div> <span class="action-count">65.3K</span>
+    </div>
+    <div class="action-item">
+        <div class="action-icon">
+            <img src="./images/share.png" height="25px" width="25px" alt="">
+        </div> <span class="action-count">187K</span>
+    </div>
+    <div class="action-item">
+        <div class="action-icon">⋯</div>
+    </div>
+</div>
+
+<div class="reel-info">
+    <div class="creator-info">
+        <div class="creator-avatar">
+            <img src="./logo.png" alt="" style="width:100%; height:100%; border-radius:50%;">
+        </div>
+        <div class="creator-name">
+            Rio films <span class="verified-badge">✓</span>
+            <button class="follow-btn">· Follow</button>
+        </div>
+    </div>
+    
+    <div class="reel-caption">
+        This is a sample caption for the reel #nature #trending #facebookreels
+    </div>
+
+    <div class="audio-info">
+        <span class="music-icon">🎵</span>
+        <span>A.R. Rahman · Luka Chuppi</span>
+    </div>
+</div>
+
+    <video class="main-video" loop muted playsinline src="./reels/reel2.mp4"></video>
+    
+    <div class="video-overlay">
+        <div class="play-btn-icon">▶</div>
+    </div>
+
+    <div class="video-seeker">
+        <div class="video-progress"></div>
+    </div>
+    </div>
+
+    <!-- Reel Sample 3 -->
+     <div class="reel-card">
+
+        <div class="reel-actions">
+    <div class="action-item">
+        <div class="action-icon">
+            <img src="./images/thumb-up.png" height="25px" width="25px" alt="">
+        </div> <span class="action-count">12.8M</span>
+    </div>
+    <div class="action-item">
+        <div class="action-icon">
+            <img src="./images/comment.png" height="25px" width="25px" alt="">
+        </div> <span class="action-count">65.3K</span>
+    </div>
+    <div class="action-item">
+        <div class="action-icon">
+            <img src="./images/share.png" height="25px" width="25px" alt="">
+        </div> <span class="action-count">187K</span>
+    </div>
+    <div class="action-item">
+        <div class="action-icon">⋯</div>
+    </div>
+</div>
+
+<div class="reel-info">
+    <div class="creator-info">
+        <div class="creator-avatar">
+            <img src="./logo.png" alt="" style="width:100%; height:100%; border-radius:50%;">
+        </div>
+        <div class="creator-name">
+            Rio films <span class="verified-badge">✓</span>
+            <button class="follow-btn">· Follow</button>
+        </div>
+    </div>
+    
+    <div class="reel-caption">
+        This is a sample caption for the reel #nature #trending #facebookreels
+    </div>
+
+    <div class="audio-info">
+        <span class="music-icon">🎵</span>
+        <span>A.R. Rahman · Luka Chuppi</span>
+    </div>
+</div>
+
+    <video class="main-video" loop muted playsinline src="./reels/reel3.mp4"></video>
+    
+    <div class="video-overlay">
+        <div class="play-btn-icon">▶</div>
+    </div>
+
+    <div class="video-seeker">
+        <div class="video-progress"></div>
+    </div>
+    </div>
+
+<script>
+
+    // Scroll function through arrows
+
+    // Navigation Arrow Algorithm
+    const track = document.getElementById('reels-track');
+    const upButton = document.querySelector('.nav-arrow.up');
+    const downButton = document.querySelector('.nav-arrow.down');
+
+    // Scroll Down Function
+    downButton.onclick = () => {
+        track.scrollBy({
+            top: window.innerHeight - 56, // Moves down by exactly one reel height
+            behavior: 'smooth'
+        });
+    };
+
+    // Scroll Up Function
+    upButton.onclick = () => {
+        track.scrollBy({
+            top: -(window.innerHeight - 56), // Moves up by exactly one reel height
+            behavior: 'smooth'
+        });
+    };
+
+
+    // Scroll function through swipe
+
+    const observerOptions = {
+    threshold: 0.6 // Video plays when 60% visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target.querySelector('video');
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
+                video.currentTime = 0; // Reset for fresh start next time
+            }
+        });
+    }, {threshold: 0.8 });
+
+    document.querySelectorAll('.reel-card').forEach(card => {
+
+        observer.observe(card);
+        
+        // Play/Pause toggle on click
+        const video = card.querySelector('.main-video');
+        const playIcon = card.querySelector('.play-btn-icon');
+        
+        card.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                if(playIcon) playIcon.parentElement.style.opacity = 0;
+            } else {
+                video.pause();
+                if(playIcon) playIcon.parentElement.style.opacity = 1;
+            }
+        });
+
+        // Update FB Seeker Bar
+        video.ontimeupdate = () => {
+            const progress = card.querySelector('.video-progress');
+            if(progress) {
+                const perc = (video.currentTime / video.duration) * 100;
+                progress.style.width = perc + "%";
+            }
+        };
+    });
+</script>
+
 </body>
 </html>
