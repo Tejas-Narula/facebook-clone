@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Groups | Facebook</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="notepage.css">
     <style>
     /* --- Global Styles & Reset --- */
     * {
@@ -480,5 +481,87 @@
             </div>
         </div>
     </div>
+<button id="notes-toggle-btn" aria-label="Toggle notes">✎</button>
+    
+    <div id="notes-popup">
+        <div class="notes-header">
+            <span>Notepad</span>
+            <button class="notes-close" aria-label="Close notes">×</button>
+        </div>
+        <textarea id="notes-textarea" placeholder="Write your notes here..."></textarea>
+        <div class="notes-footer">
+            <button class="clear-btn" id="clear-btn">Clear</button>
+            <span id="char-count">0 characters</span>
+        </div>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('notes-toggle-btn');
+        const popup = document.getElementById('notes-popup');
+        const closeBtn = document.querySelector('.notes-close');
+        const textarea = document.getElementById('notes-textarea');
+        const charCount = document.getElementById('char-count');
+        const clearBtn = document.getElementById('clear-btn');
+
+        // Load saved notes from localStorage on page load
+        function loadNotes() {
+            const savedNotes = localStorage.getItem('notepad-content');
+            if (savedNotes) {
+                textarea.value = savedNotes;
+                updateCharCount();
+            }
+        }
+
+        // Save notes to localStorage
+        function saveNotes() {
+            localStorage.setItem('notepad-content', textarea.value);
+        }
+
+        // Clear notes and localStorage
+        function clearNotes() {
+            if (confirm('Are you sure you want to clear all notes?')) {
+                textarea.value = '';
+                localStorage.removeItem('notepad-content');
+                updateCharCount();
+            }
+        }
+
+        // Update character count
+        function updateCharCount() {
+            const count = textarea.value.length;
+            charCount.textContent = count + ' character' + (count !== 1 ? 's' : '');
+        }
+
+        function togglePopup() {
+            popup.classList.toggle('show');
+            if (popup.classList.contains('show')) {
+                textarea.focus();
+            }
+        }
+
+        toggleBtn.addEventListener('click', togglePopup);
+        closeBtn.addEventListener('click', togglePopup);
+        clearBtn.addEventListener('click', clearNotes);
+
+        textarea.addEventListener('input', function() {
+            updateCharCount();
+            saveNotes();
+        });
+
+        // Click outside to close
+        document.addEventListener('click', function(e) {
+            if (!popup.contains(e.target) && e.target !== toggleBtn) {
+                popup.classList.remove('show');
+            }
+        });
+
+        // Prevent popup from closing when clicking inside
+        popup.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Load notes when page loads
+        loadNotes();
+    </script>
 </body>
 </html>
