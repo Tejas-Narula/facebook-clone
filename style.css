@@ -1,6 +1,10 @@
 /* Facebook Clone - Common Styles */
 /* Use this stylesheet across all pages */
 
+i{
+    filter: invert(1);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -486,6 +490,8 @@ img{
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
+    margin-bottom: 2px;
+    /* background-color: #243a52; */
 }
 
 .confirm-btn {
@@ -517,8 +523,8 @@ img{
 }
 
 .add-friend-btn {
-    background-color: #3a3b3c;
-    color: #1877f2;
+    background-color: #243a52;
+    color: #72ade9;
     padding: 8px;
 }
 
